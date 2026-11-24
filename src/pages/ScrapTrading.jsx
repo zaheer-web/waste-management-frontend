@@ -45,7 +45,7 @@ const icons = [FileText, Package, Boxes, Cpu, Factory, Recycle];
 const enquirySteps = [
   {
     number: '01',
-    title: 'Share Material Details',
+    title: 'Share Material Detail',
     text: 'Tell us the scrap category, material type and approximate quantity.',
     icon: ClipboardList,
   },
