@@ -19,7 +19,7 @@ import ServiceCard from '../components/ServiceCard.jsx';
 import { services, scrapTypes } from '../data.js';
 
 // Local Images
-import H1 from '../img/Home/H1.png';
+import H1 from '../img/Home/H2.png';
 import H2 from '../img/Home/H2.png';
 import H3 from '../img/Home/H3.png';
 import H4 from '../img/Home/H4.png';

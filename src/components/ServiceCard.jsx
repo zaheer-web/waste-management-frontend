@@ -47,187 +47,73 @@ export default function ServiceCard({ item, image: cardImage }) {
     <Link
       to={`/services/${item.slug}`}
       aria-label={`View details about ${item.title}`}
-      className="service-card-link block h-full"
+      className="group block h-full"
     >
+      <article className="flex h-full flex-col overflow-hidden rounded-[24px] border border-forest/10 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
 
-      <article className="service-flip-card group h-full">
+        {/* SERVICE IMAGE */}
 
-        {/* ================================= */}
-        {/* MOBILE CARD - IMAGE ALWAYS VISIBLE */}
-        {/* ================================= */}
+        <div className="relative h-[220px] w-full overflow-hidden sm:h-[240px]">
 
-        <div className="md:hidden h-full overflow-hidden rounded-[24px] border border-forest/10 bg-white shadow-sm transition duration-300 active:scale-[0.98]">
+          <img
+            src={image}
+            alt={item.title}
+            loading="lazy"
+            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+          />
 
-          {/* Service Image */}
+          {/* Image Overlay */}
 
-          <div className="relative h-[210px] w-full overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-t from-[#092b1d]/70 via-transparent to-transparent" />
 
-            <img
-              src={image}
-              alt={item.title}
-              loading="lazy"
-              className="h-full w-full object-cover"
-            />
+          {/* Service Tag */}
 
-            {/* Image Overlay */}
+          <span className="absolute left-5 top-5 rounded-full border border-white/30 bg-white/15 px-4 py-2 text-[10px] font-extrabold uppercase tracking-wider text-white backdrop-blur-md">
+            {item.tag}
+          </span>
 
-            <div className="absolute inset-0 bg-gradient-to-t from-[#092b1d]/75 via-transparent to-transparent" />
+          {/* Service Icon */}
 
-            {/* Service Tag */}
-
-            <span className="absolute left-4 top-4 rounded-full border border-white/30 bg-white/15 px-3 py-2 text-[10px] font-extrabold uppercase tracking-wider text-white backdrop-blur-md">
-              {item.tag}
-            </span>
-
-            {/* Icon */}
-
-            <span className="absolute bottom-4 left-4 grid h-12 w-12 place-items-center rounded-xl bg-lime text-forest shadow-lg">
-              <Icon size={24} />
-            </span>
-
-          </div>
-
-
-          {/* Service Content */}
-
-          <div className="flex flex-col p-5">
-
-            <h3 className="font-display text-lg font-extrabold text-forest">
-              {item.title}
-            </h3>
-
-            <p className="mt-3 text-sm leading-6 text-ink/60">
-              {item.text}
-            </p>
-
-            {/* Explore Button */}
-
-            <div className="mt-5 flex items-center justify-between border-t border-forest/10 pt-4">
-
-              <span className="inline-flex items-center gap-2 text-sm font-extrabold text-leaf">
-                Explore service
-                <ArrowUpRight size={17} />
-              </span>
-
-              <CheckCircle2
-                size={20}
-                className="text-leaf"
-              />
-
-            </div>
-
-          </div>
+          <span className="absolute bottom-5 left-5 grid h-12 w-12 place-items-center rounded-xl bg-lime text-forest shadow-lg">
+            <Icon size={24} />
+          </span>
 
         </div>
 
+        {/* SERVICE CONTENT */}
 
-        {/* ================================= */}
-        {/* DESKTOP CARD - EXISTING FLIP DESIGN */}
-        {/* ================================= */}
+        <div className="flex flex-1 flex-col p-6">
 
-        <div className="hidden md:block h-full">
+          <h3 className="font-display text-xl font-extrabold text-forest transition-colors duration-300 group-hover:text-leaf">
+            {item.title}
+          </h3>
 
-          <div className="service-flip-inner">
+          <p className="mt-3 flex-1 text-sm leading-7 text-ink/60">
+            {item.text}
+          </p>
 
-            {/* FRONT SIDE */}
+          {/* CARD FOOTER */}
 
-            <div className="service-card-front">
+          <div className="mt-6 flex items-center justify-between border-t border-forest/10 pt-5">
 
-              <div className="flex items-start justify-between">
+            <span className="inline-flex items-center gap-2 text-sm font-extrabold text-leaf">
+              Explore service
+              <ArrowUpRight
+                size={18}
+                className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
+              />
+            </span>
 
-                <span className="grid h-14 w-14 place-items-center rounded-2xl bg-mist text-leaf">
-                  <Icon size={27} />
-                </span>
-
-                <span className="rounded-full bg-mist px-3 py-1.5 text-[10px] font-extrabold uppercase tracking-wider text-leaf">
-                  {item.tag}
-                </span>
-
-              </div>
-
-              <div className="mt-7">
-
-                <h3 className="font-display text-xl font-extrabold text-forest">
-                  {item.title}
-                </h3>
-
-                <p className="mt-3 text-sm leading-7 text-ink/60">
-                  {item.text}
-                </p>
-
-              </div>
-
-              <div className="mt-auto flex items-center justify-between border-t border-forest/10 pt-5">
-
-                <span className="inline-flex items-center gap-2 text-sm font-extrabold text-leaf">
-                  Explore service
-                  <ArrowUpRight size={17} />
-                </span>
-
-                <span className="text-xs font-semibold text-slate-400">
-                  Hover to explore
-                </span>
-
-              </div>
-
-            </div>
-
-
-            {/* BACK SIDE */}
-
-            <div
-              className="service-card-back"
-              style={{
-                backgroundImage: `url("${image}")`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-              }}
-            >
-
-              <div className="service-card-overlay" />
-
-              <div className="relative z-10 flex h-full flex-col justify-between p-7">
-
-                <div className="flex items-center justify-between">
-
-                  <span className="rounded-full border border-white/30 bg-white/15 px-3 py-2 text-[10px] font-extrabold uppercase tracking-wider text-white backdrop-blur-md">
-                    {item.tag}
-                  </span>
-
-                  <CheckCircle2
-                    size={24}
-                    className="text-lime"
-                  />
-
-                </div>
-
-                <div>
-
-                  <h3 className="font-display text-2xl font-extrabold leading-tight text-white">
-                    {item.title}
-                  </h3>
-
-                  <p className="mt-3 line-clamp-3 text-sm leading-6 text-white/80">
-                    {item.text}
-                  </p>
-
-                  <span className="mt-6 inline-flex items-center gap-2 rounded-full bg-lime px-5 py-3 text-sm font-extrabold text-forest transition hover:bg-white">
-                    View Full Details
-                    <ArrowUpRight size={17} />
-                  </span>
-
-                </div>
-
-              </div>
-
-            </div>
+            <CheckCircle2
+              size={21}
+              className="text-leaf"
+            />
 
           </div>
 
         </div>
 
       </article>
-
     </Link>
   );
 }
