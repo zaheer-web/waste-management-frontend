@@ -21,12 +21,14 @@ import S2 from '../img/oUR sERVICE/S2.png';
 import S3 from '../img/oUR sERVICE/S3.png';
 import S4 from '../img/oUR sERVICE/S4.png';
 import S5 from '../img/oUR sERVICE/S5.png';
-import S6 from '../img/oUR sERVICE/S6.png';
-import S7 from '../img/oUR sERVICE/S7.png';
-import S8 from '../img/oUR sERVICE/S8.png';
-import S9 from '../img/oUR sERVICE/S9.png';
-import S10 from '../img/oUR sERVICE/S10.png';
-import S11 from '../img/oUR sERVICE/S11.png';
+import S6 from '../img/Home/H6.png';
+import S7 from '../img/oUR sERVICE/S6.png';
+import S8 from '../img/oUR sERVICE/S7.png';
+import S9 from '../img/oUR sERVICE/S8.png';
+import S10 from '../img/oUR sERVICE/S9.png';
+import S11 from '../img/oUR sERVICE/S10.png';
+
+import S12 from '../img/oUR sERVICE/S11.png';
 
 // Service Portfolio Images
 const serviceImages = [
@@ -39,6 +41,8 @@ const serviceImages = [
   S8,
   S9,
   S10,
+  S11,
+
 ];
 
 // Service benefits
@@ -480,7 +484,7 @@ export default function Services() {
             <div className="relative overflow-hidden rounded-[30px] border border-white/20">
 
               <img
-                src={S11}
+                src={S12}
                 alt="Waste Care Links - Let's Work Together"
                 loading="lazy"
                 className="h-[300px] w-full object-cover sm:h-[360px]"
