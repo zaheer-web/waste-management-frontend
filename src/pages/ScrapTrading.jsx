@@ -1,4 +1,3 @@
-
 import { Link } from 'react-router-dom';
 
 import {
@@ -75,7 +74,7 @@ export default function ScrapTrading() {
 
       <section className="relative flex min-h-[520px] items-center overflow-hidden bg-forest">
 
-        {/* Background Image - URL UNCHANGED */}
+        {/* Background Image */}
 
         <div
           className="absolute inset-0 bg-cover bg-center"
@@ -297,9 +296,11 @@ export default function ScrapTrading() {
 
               return (
 
-                <article
+                <Link
                   key={item}
-                  className="group overflow-hidden rounded-[28px] border border-forest/5 bg-white shadow-[0_8px_35px_rgba(18,61,43,.05)] transition duration-500 hover:-translate-y-2 hover:shadow-[0_20px_50px_rgba(18,61,43,.14)]"
+                  to="/contact"
+                  aria-label={`Enquire about ${item}`}
+                  className="group block overflow-hidden rounded-[28px] border border-forest/5 bg-white shadow-[0_8px_35px_rgba(18,61,43,.05)] transition duration-500 hover:-translate-y-2 hover:shadow-[0_20px_50px_rgba(18,61,43,.14)] focus:outline-none focus-visible:ring-4 focus-visible:ring-leaf/30"
                 >
 
                   {/* Local Category Image */}
@@ -352,10 +353,7 @@ export default function ScrapTrading() {
                       availability.
                     </p>
 
-                    <Link
-                      to="/contact"
-                      className="mt-6 flex items-center justify-between border-t border-forest/10 pt-5"
-                    >
+                    <div className="mt-6 flex items-center justify-between border-t border-forest/10 pt-5">
 
                       <span className="text-sm font-extrabold text-leaf">
                         Enquire About Material
@@ -365,13 +363,13 @@ export default function ScrapTrading() {
                         <ArrowRight size={16} />
                       </span>
 
-                    </Link>
+                    </div>
 
                     <div className="mt-5 h-1 w-12 rounded-full bg-lime transition-all duration-500 group-hover:w-full" />
 
                   </div>
 
-                </article>
+                </Link>
 
               );
 
@@ -507,7 +505,7 @@ export default function ScrapTrading() {
 
       <section className="relative overflow-hidden">
 
-        {/* Background Image - URL UNCHANGED */}
+        {/* Background Image */}
 
         <div
           className="absolute inset-0 bg-cover bg-center"
