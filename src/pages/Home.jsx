@@ -1,3 +1,4 @@
+import { useState } from 'react';
 
 import {
   ArrowRight,
@@ -8,17 +9,24 @@ import {
   Truck,
   CircleCheck,
   Sprout,
-  MoveRight
+  MoveRight,
+  Play,
+  X
 } from 'lucide-react';
 
 import { Link } from 'react-router-dom';
+
+// VIDEO IMPORTS
+import video1 from '../video/vid-3.mp4';
+import video2 from '../video/vid-1.mp4';
+import video3 from '../video/vid-2.mp4';
 
 import SectionHeading from '../components/SectionHeading.jsx';
 import ServiceCard from '../components/ServiceCard.jsx';
 
 import { services, scrapTypes } from '../data.js';
 
-// Local Images
+// LOCAL IMAGES
 import H1 from '../img/Home/H2.png';
 import H2 from '../img/Home/H2.png';
 import H3 from '../img/Home/H3.png';
@@ -28,14 +36,49 @@ import H6 from '../img/Home/H6.png';
 import H7 from '../img/Home/H7.png';
 import H8 from '../img/Home/H8.png';
 
-// Image Sequence
+// IMAGE SEQUENCE
 const homeImages = [H1, H2, H3, H4, H5, H6, H7, H8];
 
-// Background URL - UNCHANGED
+// BACKGROUND URL
 const heroImg =
   'https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?auto=format&fit=crop&w=1900&q=85';
 
+// VIDEO GALLERY DATA
+const homeVideos = [
+  {
+    id: 1,
+    title: 'Secure Paper Shredding Services',
+    category: 'Secure Document Destruction',
+    description:
+      'Protect your confidential business information with secure paper shredding solutions. From office records and financial documents to sensitive paperwork, we support responsible document destruction and help businesses maintain information security.',
+    video: video1,
+    thumbnail: H2
+  },
+  {
+    id: 2,
+    title: 'Data & Media Destruction',
+    category: 'Data Security & Media Disposal',
+    description:
+      'Safeguard sensitive digital information through responsible data and media destruction. Our solutions focus on the secure disposal of storage media and information-bearing materials, helping businesses reduce the risk of unwanted data exposure.',
+    video: video2,
+    thumbnail: H5
+  },
+  {
+    id: 3,
+    title: 'Recycling & Resource Recovery',
+    category: 'Responsible Recycling',
+    description:
+      'Discover how recyclable materials can be recovered and given a new purpose. We support responsible material segregation, collection and recycling practices that help businesses reduce waste and make better use of valuable resources.',
+    video: video3,
+    thumbnail: H7
+  }
+];
+
 export default function Home() {
+
+  // ACTIVE VIDEO STATE
+  const [activeVideo, setActiveVideo] = useState(null);
+
   return (
     <>
 
@@ -105,7 +148,7 @@ export default function Home() {
 
           </div>
 
-          {/* HERO IMAGE - H1 */}
+          {/* HERO IMAGE */}
           <div className="hidden justify-end lg:flex">
 
             <div className="relative w-[390px]">
@@ -201,6 +244,212 @@ export default function Home() {
       </section>
 
 
+      {/* VIDEO GALLERY SECTION */}
+      <section className="section-pad overflow-hidden bg-mist">
+
+        <div className="container-width">
+
+          {/* VIDEO SECTION HEADING */}
+          <div className="mb-12 flex flex-col justify-between gap-5 md:flex-row md:items-end">
+
+            <div className="max-w-2xl">
+
+              <span className="inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-[.18em] text-leaf">
+                <Play size={16} />
+                Our Video Gallery
+              </span>
+
+              <h2 className="mt-4 font-display text-3xl font-extrabold leading-tight text-forest sm:text-4xl">
+                Explore Our Work
+                <span className="text-leaf"> In Action.</span>
+              </h2>
+
+              <p className="mt-4 max-w-xl text-sm leading-7 text-ink/60">
+                Get a closer look at how we help businesses protect
+                confidential information, manage waste responsibly and
+                recover valuable recyclable resources.
+              </p>
+
+            </div>
+
+            <span className="text-xs font-extrabold uppercase tracking-widest text-leaf">
+              03 Featured Videos
+            </span>
+
+          </div>
+
+
+          {/* THREE VIDEO CARDS */}
+          <div className="grid grid-cols-1 gap-7 sm:grid-cols-2 lg:grid-cols-3">
+
+            {homeVideos.map((item) => (
+
+              <button
+                key={item.id}
+                type="button"
+                onClick={() => setActiveVideo(item)}
+                aria-label={`Play ${item.title}`}
+                className="group flex h-full flex-col overflow-hidden rounded-2xl border border-forest/5 bg-white text-left shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-leaf"
+              >
+
+                {/* VIDEO THUMBNAIL */}
+                <div className="relative aspect-[16/10] w-full overflow-hidden bg-forest">
+
+                  <img
+                    src={item.thumbnail}
+                    alt={item.title}
+                    loading="lazy"
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+
+                  {/* OVERLAY */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-forest/75 via-black/10 to-black/10 transition group-hover:from-forest/85" />
+
+                  {/* PLAY BUTTON */}
+                  <div className="absolute inset-0 flex items-center justify-center">
+
+                    <span className="grid h-16 w-16 place-items-center rounded-full bg-lime text-forest shadow-xl transition duration-300 group-hover:scale-110 group-hover:bg-white">
+
+                      <Play
+                        size={26}
+                        fill="currentColor"
+                        className="ml-1"
+                      />
+
+                    </span>
+
+                  </div>
+
+                  {/* VIDEO LABEL */}
+                  <span className="absolute bottom-4 left-4 rounded-full border border-white/30 bg-forest/70 px-3 py-1.5 text-[10px] font-extrabold uppercase tracking-widest text-white backdrop-blur">
+                    Watch Video
+                  </span>
+
+                </div>
+
+
+                {/* VIDEO INFORMATION */}
+                <div className="flex flex-1 flex-col p-6">
+
+                  {/* CATEGORY */}
+                  <span className="mb-3 text-[10px] font-extrabold uppercase tracking-[.16em] text-leaf">
+                    {item.category}
+                  </span>
+
+                  {/* TITLE */}
+                  <h3 className="font-display text-xl font-extrabold leading-snug text-forest transition-colors group-hover:text-leaf">
+                    {item.title}
+                  </h3>
+
+                  {/* DESCRIPTION */}
+                  <p className="mt-3 flex-1 text-sm leading-7 text-ink/60">
+                    {item.description}
+                  </p>
+
+                  {/* PLAY BUTTON TEXT */}
+                  <span className="mt-6 inline-flex items-center gap-2 border-t border-forest/10 pt-4 text-xs font-extrabold uppercase tracking-wider text-leaf">
+                    Play Video
+                    <ArrowRight
+                      size={16}
+                      className="transition-transform group-hover:translate-x-1"
+                    />
+                  </span>
+
+                </div>
+
+              </button>
+
+            ))}
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      {/* VIDEO POPUP MODAL */}
+      {activeVideo && (
+
+        <div
+          className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/90 p-4 backdrop-blur-sm"
+          onClick={() => setActiveVideo(null)}
+        >
+
+          <div
+            className="relative w-full max-w-5xl overflow-hidden rounded-2xl bg-forest shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+
+            {/* MODAL HEADER */}
+            <div className="flex items-center justify-between gap-4 px-5 py-4 sm:px-7">
+
+              <div>
+
+                <span className="text-[10px] font-extrabold uppercase tracking-widest text-lime">
+                  Waste Care Links
+                </span>
+
+                <h3 className="mt-1 font-display text-lg font-extrabold text-white sm:text-xl">
+                  {activeVideo.title}
+                </h3>
+
+              </div>
+
+              {/* CLOSE BUTTON */}
+              <button
+                type="button"
+                onClick={() => setActiveVideo(null)}
+                aria-label="Close video"
+                className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-white/10 text-white transition hover:bg-lime hover:text-forest"
+              >
+                <X size={22} />
+              </button>
+
+            </div>
+
+
+            {/* VIDEO PLAYER */}
+            <div className="bg-black">
+
+              <video
+                key={activeVideo.id}
+                src={activeVideo.video}
+                poster={activeVideo.thumbnail}
+                controls
+                autoPlay
+                playsInline
+                preload="metadata"
+                className="aspect-video max-h-[75vh] w-full object-contain"
+              >
+
+                Your browser does not support HTML5 video.
+
+              </video>
+
+            </div>
+
+
+            {/* MODAL FOOTER */}
+            <div className="px-5 py-5 sm:px-7">
+
+              <span className="text-[10px] font-extrabold uppercase tracking-widest text-lime">
+                {activeVideo.category}
+              </span>
+
+              <p className="mt-2 text-sm leading-7 text-white/65">
+                {activeVideo.description}
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      )}
+
+
       {/* WHAT WE DO SECTION */}
       <section className="section-pad bg-mist">
 
@@ -224,7 +473,7 @@ export default function Home() {
 
           </div>
 
-          {/* SERVICE CARDS - H2 TO H7 */}
+          {/* SERVICE CARDS */}
           <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
 
             {services.slice(0, 6).map((item, index) => (
@@ -251,7 +500,6 @@ export default function Home() {
 
           <div className="relative">
 
-            {/* WHY CHOOSE US IMAGE - H8 */}
             <img
               src={homeImages[7]}
               alt="Green forest representing a healthy environment"
